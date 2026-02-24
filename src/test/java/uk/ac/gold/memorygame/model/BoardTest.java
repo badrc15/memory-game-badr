@@ -82,13 +82,15 @@ class BoardTest {
 
     @Test
     void testAllCardsMatched() {
-        int numberOfPairs = 2;
+        int numberOfPairs = 4;
         Board board = new Board(numberOfPairs, false);
 
-        for (int i = 0; i < board.numberOfCards(); i++) {
+        for (int i = 0; i < board.numberOfCards(); i += 2) {
+            // Set the next pair of cards to matched.
             board.getCard(i).setMatched(true);
-            // Only return true after final card is matched.
-            if (i < board.numberOfCards() - 1) {
+            board.getCard(i + 1).setMatched(true);
+            // Only return true after final pair is matched.
+            if (i < board.numberOfCards() - 2) {
                 assertFalse(board.allCardsMatched());
             } else {
                 assertTrue(board.allCardsMatched());
