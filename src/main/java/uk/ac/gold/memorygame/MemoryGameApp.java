@@ -6,7 +6,9 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import javafx.application.Application;
+import javafx.scene.Scene;
 import javafx.stage.Stage;
+import uk.ac.gold.memorygame.controller.GameStartController;
 
 /**
  * JavaFX App: MemoryGame
@@ -52,6 +54,13 @@ public class MemoryGameApp extends Application {
 
     public void showStartScreen() {
         LOGGER.debug("Creating start screen");
+
+        GameStartController controller = new GameStartController(this);
+        primaryStage.setScene(new Scene(controller.getView(), 640, 480));
+    }
+
+    public void showGameScreen() {
+        LOGGER.debug("Creating game screen");
     }
 
     public Preferences getPrefs() {

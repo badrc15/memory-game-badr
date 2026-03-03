@@ -15,8 +15,8 @@ public class GameModel implements ObservableGameModel {
 
     private Board board;
     private ScoringStrategy scoring;
-    private int moves = 0;
     private GameState currentState;
+    private int moves = 0;
 
     private final List<GameModelObserver> observers = new CopyOnWriteArrayList<>();
 
@@ -24,13 +24,7 @@ public class GameModel implements ObservableGameModel {
         initialise(board, scoring);
     }
 
-    /*
-     * -----------------------------
-     * Public API (used by Controller)
-     * -----------------------------
-     */
-
-    public void initialise(Board board, ScoringStrategy scoring) {
+    private void initialise(Board board, ScoringStrategy scoring) {
         this.board = board;
         this.scoring = scoring;
         this.moves = 0;
@@ -38,6 +32,12 @@ public class GameModel implements ObservableGameModel {
         // Set first game state.
         setState(new WaitingForFirstCardState(this));
     }
+
+    /*
+     * -----------------------------
+     * Public API (used by Controller)
+     * -----------------------------
+     */
 
     public Board getBoard() {
         return board;

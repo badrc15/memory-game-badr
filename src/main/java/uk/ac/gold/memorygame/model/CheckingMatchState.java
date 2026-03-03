@@ -20,7 +20,7 @@ public class CheckingMatchState extends AbstractGameState {
         checkMatch();
     }
 
-    public void checkMatch() {
+    private void checkMatch() {
         LOGGER.debug("Check match between {} and {}", first, second);
 
         if (first.matches(second)) {
