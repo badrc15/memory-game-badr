@@ -5,7 +5,6 @@ import org.apache.logging.log4j.Logger;
 
 import javafx.scene.Parent;
 import uk.ac.gold.memorygame.MemoryGameApp;
-import uk.ac.gold.memorygame.view.FaceMap;
 import uk.ac.gold.memorygame.view.GameStartView;
 
 public class GameStartController {
@@ -13,8 +12,6 @@ public class GameStartController {
     private static final Logger LOGGER = LogManager.getLogger();
 
     private final MemoryGameApp app;
-
-    FaceMap<?> faceMap;
 
     private GameStartView gameStartView;
 
