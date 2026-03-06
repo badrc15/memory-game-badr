@@ -35,7 +35,7 @@ public class GameModel implements ObservableGameModel {
 
     /*
      * -----------------------------
-     * Public API (used by Controller)
+     * Access
      * -----------------------------
      */
 
@@ -121,9 +121,23 @@ public class GameModel implements ObservableGameModel {
     }
 
     @Override
-    public void notifyGameOver() {
+    public void notifyCardFlipUp(Card card) {
         for (GameModelObserver o : observers) {
-            o.onGameOver();
+            o.onCardFlipUp(card);
+        }
+    }
+
+    @Override
+    public void notifyMatch(List<Card> cards) {
+        for (GameModelObserver o : observers) {
+            o.onMatch(cards);
+        }
+    }
+
+    @Override
+    public void notifyMismatch(List<Card> cards) {
+        for (GameModelObserver o : observers) {
+            o.onMismatch(cards);
         }
     }
 
@@ -131,6 +145,13 @@ public class GameModel implements ObservableGameModel {
     public void notifyStateChange() {
         for (GameModelObserver o : observers) {
             o.onStateChange();
+        }
+    }
+
+    @Override
+    public void notifyGameOver() {
+        for (GameModelObserver o : observers) {
+            o.onGameOver();
         }
     }
 }
