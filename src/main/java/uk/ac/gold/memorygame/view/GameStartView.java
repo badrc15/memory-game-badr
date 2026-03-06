@@ -14,7 +14,7 @@ public class GameStartView {
 
     private static final Logger LOGGER = LogManager.getLogger();
 
-    // Root javafx parent node.
+    // Root JavaFX parent node.
     private final VBox root;
 
     private final Button startButton;
