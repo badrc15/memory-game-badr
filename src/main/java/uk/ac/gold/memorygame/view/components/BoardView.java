@@ -12,7 +12,7 @@ import javafx.scene.Parent;
 import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.RowConstraints;
-import uk.ac.gold.memorygame.config.CardSet;
+import uk.ac.gold.memorygame.config.CardDeck;
 import uk.ac.gold.memorygame.model.Card;
 
 public class BoardView {
@@ -31,7 +31,7 @@ public class BoardView {
         return cardViewButtons.get(card);
     }
 
-    public void buildCards(List<Card> cards, CardSet cardSet) {
+    public void buildCards(List<Card> cards, CardDeck cardDeck) {
         LOGGER.debug("Building card buttons");
 
         int numberOfCards = cards.size();
@@ -59,7 +59,7 @@ public class BoardView {
 
             CardButton cardButton = new TextCardButton(
                     cardModel,
-                    cardSet.get(cardModel.getPairId()));
+                    cardDeck.get(cardModel.getPairId()));
             cardViewButtons.put(cardModel, cardButton);
 
             int col = i % ncols;

@@ -2,18 +2,18 @@ package uk.ac.gold.memorygame.config;
 
 import java.util.List;
 
-public class TextCardSet implements CardSet {
+public class TextCardDeck implements CardDeck {
 
     private final String name;
     private final List<String> items;
 
-    public TextCardSet(String name, List<String> items) {
+    public TextCardDeck(String name, List<String> items) {
         this.name = name;
         this.items = items;
     }
 
     @Override
-    public String getName() {
+    public String name() {
         return name;
     }
 

@@ -12,7 +12,7 @@ import javafx.scene.Parent;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
 import javafx.util.Duration;
-import uk.ac.gold.memorygame.config.CardSet;
+import uk.ac.gold.memorygame.config.CardDeck;
 import uk.ac.gold.memorygame.model.Card;
 import uk.ac.gold.memorygame.model.GameModel;
 import uk.ac.gold.memorygame.view.components.BoardView;
@@ -35,7 +35,7 @@ public class GamePlayView {
     // Timer to handle UI update of mismatched cards.
     private PauseTransition mismatchPause = new PauseTransition(Duration.seconds(2));;
 
-    public GamePlayView(GameModel model, CardSet cardSet) {
+    public GamePlayView(GameModel model, CardDeck cardDeck) {
         this.model = model;
 
         root = new VBox();
@@ -46,7 +46,7 @@ public class GamePlayView {
 
         // Pass only the list of card model instances to the board, it doesn't
         // need access to the entire game model.
-        boardView.buildCards(model.getCards(), cardSet);
+        boardView.buildCards(model.getCards(), cardDeck);
 
         // Allow board to fill all vertical space.
         VBox.setVgrow(boardView.getRoot(), Priority.ALWAYS);

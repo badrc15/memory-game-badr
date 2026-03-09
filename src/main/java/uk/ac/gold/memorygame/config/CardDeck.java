@@ -2,8 +2,8 @@ package uk.ac.gold.memorygame.config;
 
 import java.util.List;
 
-public interface CardSet {
-    String getName();
+public interface CardDeck {
+    String name();
 
     int numberOfItems();
 
