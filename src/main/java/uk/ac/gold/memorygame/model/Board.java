@@ -11,9 +11,18 @@ public class Board {
     private final List<Card> cards = new ArrayList<>();
 
     public Board(int numberOfPairs) {
+        this(numberOfPairs, true);
     }
 
     public Board(int numberOfPairs, boolean shuffle) {
+        for (int i = 0; i < numberOfPairs; i++) {
+            cards.add(new Card(i));
+            cards.add(new Card(i));
+        }
+
+        if (shuffle) {
+            Collections.shuffle(cards);
+        }
     }
 
     /*
@@ -32,11 +41,11 @@ public class Board {
     }
 
     public int numberOfCards() {
-        return -1;
+        return cards.size();
     }
 
     public int numberOfPairs() {
-        return -1;
+        return cards.size() / 2;
     }
 
     /*
@@ -46,14 +55,28 @@ public class Board {
      */
 
     public int countMatchedCards() {
-        return -1;
+        int count = 0;
+
+        for (Card card : cards) {
+            if (card.isMatched()) {
+                count++;
+            }
+        }
+
+        if (count % 2 != 0) {
+            throw new BoardStateException(
+                    "Matched card count must be even, counted: " + count
+            );
+        }
+
+        return count;
     }
 
     public int countMatchedPairs() {
-        return -1;
+        return countMatchedCards() / 2;
     }
 
     public boolean allCardsMatched() {
-        return false;
+        return countMatchedCards() == numberOfCards();
     }
 }

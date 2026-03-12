@@ -56,7 +56,7 @@ public class GameModel implements ObservableGameModel {
     }
 
     public boolean isGameOver() {
-        return false;
+        return board.allCardsMatched();
     }
 
     /*

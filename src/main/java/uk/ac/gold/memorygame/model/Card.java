@@ -18,11 +18,11 @@ public class Card {
      */
 
     public int getPairId() {
-        return -1;
+        return pairId;
     }
 
     public boolean matches(Card other) {
-        return false;
+        return this.pairId == other.pairId;
     }
 
     @Override
@@ -40,19 +40,22 @@ public class Card {
      */
 
     public boolean isFaceUp() {
-        return false;
+        return faceUp;
     }
 
     public boolean isMatched() {
-        return false;
+        return matched;
     }
 
     public void flipUp() {
+        faceUp = true;
     }
 
     public void flipDown() {
+        faceUp = false;
     }
 
     public void setMatched(boolean matched) {
+        this.matched = matched;
     }
 }
