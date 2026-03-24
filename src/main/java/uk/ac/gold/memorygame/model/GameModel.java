@@ -15,8 +15,8 @@ public class GameModel implements ObservableGameModel {
 
     private Board board;
     private ScoringStrategy scoring;
-    private int moves = 0;
     private GameState currentState;
+    private int moves = 0;
 
     private final List<GameModelObserver> observers = new CopyOnWriteArrayList<>();
 
@@ -24,13 +24,7 @@ public class GameModel implements ObservableGameModel {
         initialise(board, scoring);
     }
 
-    /*
-     * -----------------------------
-     * Public API (used by Controller)
-     * -----------------------------
-     */
-
-    public void initialise(Board board, ScoringStrategy scoring) {
+    private void initialise(Board board, ScoringStrategy scoring) {
         this.board = board;
         this.scoring = scoring;
         this.moves = 0;
@@ -38,6 +32,12 @@ public class GameModel implements ObservableGameModel {
         // Set first game state.
         setState(new WaitingForFirstCardState(this));
     }
+
+    /*
+     * -----------------------------
+     * Access
+     * -----------------------------
+     */
 
     public Board getBoard() {
         return board;
@@ -121,9 +121,23 @@ public class GameModel implements ObservableGameModel {
     }
 
     @Override
-    public void notifyGameOver() {
+    public void notifyCardFlipUp(Card card) {
         for (GameModelObserver o : observers) {
-            o.onGameOver();
+            o.onCardFlipUp(card);
+        }
+    }
+
+    @Override
+    public void notifyMatch(List<Card> cards) {
+        for (GameModelObserver o : observers) {
+            o.onMatch(cards);
+        }
+    }
+
+    @Override
+    public void notifyMismatch(List<Card> cards) {
+        for (GameModelObserver o : observers) {
+            o.onMismatch(cards);
         }
     }
 
@@ -131,6 +145,13 @@ public class GameModel implements ObservableGameModel {
     public void notifyStateChange() {
         for (GameModelObserver o : observers) {
             o.onStateChange();
+        }
+    }
+
+    @Override
+    public void notifyGameOver() {
+        for (GameModelObserver o : observers) {
+            o.onGameOver();
         }
     }
 }
