@@ -1,5 +1,6 @@
 package uk.ac.gold.memorygame;
 
+import java.util.List;
 import java.util.prefs.Preferences;
 
 import org.apache.logging.log4j.LogManager;
@@ -8,6 +9,9 @@ import org.apache.logging.log4j.Logger;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import uk.ac.gold.memorygame.config.CardDeck;
+import uk.ac.gold.memorygame.config.TextCardDeck;
+import uk.ac.gold.memorygame.controller.GamePlayController;
 import uk.ac.gold.memorygame.controller.GameStartController;
 
 /**
@@ -61,7 +65,21 @@ public class MemoryGameApp extends Application {
 
     public void showGameScreen() {
         LOGGER.debug("Creating game screen");
+
+        CardDeck cardDeck = new TextCardDeck(
+            "Animals",
+            List.of("bat", "bug", "cat", "cow", "dog", "pig"));
+
+        int numberOfPairs = 6;
+
+        GamePlayController controller = new GamePlayController(this, cardDeck, numberOfPairs);
+        primaryStage.setScene(new Scene(controller.getView(), 640, 480));
     }
+
+    public void showGameOverScreen(int finalScore) {
+    LOGGER.info("Game over");
+    LOGGER.info("Final score: {}", finalScore);
+}
 
     public Preferences getPrefs() {
         return prefs;
