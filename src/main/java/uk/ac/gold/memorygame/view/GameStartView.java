@@ -8,7 +8,10 @@ import javafx.event.EventHandler;
 import javafx.geometry.Pos;
 import javafx.scene.Parent;
 import javafx.scene.control.Button;
+import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.Label;
 import javafx.scene.layout.VBox;
+import uk.ac.gold.memorygame.config.Difficulty;
 
 public class GameStartView {
 
@@ -19,18 +22,32 @@ public class GameStartView {
 
     private final Button startButton;
 
+    private final ChoiceBox<Difficulty> difficultyChoice;
+    private final Label difficultyLabel;
+
     public GameStartView() {
         root = new VBox();
         root.setSpacing(10);
         root.setAlignment(Pos.CENTER);
 
         startButton = new Button("Start Game");
-        root.getChildren().add(startButton);
+
+        difficultyChoice = new ChoiceBox<>();
+        difficultyChoice.getItems().addAll(Difficulty.values());
+        difficultyChoice.setValue(Difficulty.MEDIUM);
+
+        difficultyLabel = new Label("Select Difficulty:");
+
+        root.getChildren().addAll(difficultyLabel, difficultyChoice, startButton);
     }
 
     public Parent getRoot() {
         return root;
     }
+
+    public Difficulty getSelectedDifficulty() {
+    return difficultyChoice.getValue();
+    }   
 
     public void setStartClickHandler(EventHandler<ActionEvent> handler) {
         LOGGER.debug("Setting start click handler");

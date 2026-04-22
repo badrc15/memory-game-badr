@@ -6,6 +6,7 @@ import org.apache.logging.log4j.Logger;
 import javafx.application.Platform;
 import javafx.scene.Parent;
 import uk.ac.gold.memorygame.MemoryGameApp;
+import uk.ac.gold.memorygame.config.Difficulty;
 import uk.ac.gold.memorygame.view.components.GameOverView;
 
 public class GameOverController {
@@ -44,7 +45,7 @@ public class GameOverController {
 
     private void onRestartButtonClick() {
         LOGGER.debug("Restart button click");
-        app.showGameScreen();
+        app.showGameScreen(Difficulty.EASY);
     }
 
     private void onQuitButtonClick() {

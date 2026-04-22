@@ -10,6 +10,7 @@ import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import uk.ac.gold.memorygame.config.CardDeck;
+import uk.ac.gold.memorygame.config.Difficulty;
 import uk.ac.gold.memorygame.config.TextCardDeck;
 import uk.ac.gold.memorygame.controller.GameOverController;
 import uk.ac.gold.memorygame.controller.GamePlayController;
@@ -64,14 +65,14 @@ public class MemoryGameApp extends Application {
         primaryStage.setScene(new Scene(controller.getView(), 640, 480));
     }
 
-    public void showGameScreen() {
+    public void showGameScreen(Difficulty difficulty) {
         LOGGER.debug("Creating game screen");
 
         CardDeck<String> cardDeck = new TextCardDeck(
             "Animals",
-            List.of("bat", "bug", "cat", "cow", "dog", "pig"));
+            List.of("bat", "bug", "cat", "cow", "dog", "pig", "fox", "owl"));
 
-        int numberOfPairs = 6;
+        int numberOfPairs = difficulty.getPairs();
 
         GamePlayController controller = new GamePlayController(this, cardDeck, numberOfPairs);
         primaryStage.setScene(new Scene(controller.getView(), 640, 480));

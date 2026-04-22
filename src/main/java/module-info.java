@@ -8,4 +8,6 @@ module uk.ac.gold.memorygame {
     exports uk.ac.gold.memorygame;
     exports uk.ac.gold.memorygame.model;
     exports uk.ac.gold.memorygame.observer;
+    exports uk.ac.gold.memorygame.config;
+    exports uk.ac.gold.memorygame.view;
 }

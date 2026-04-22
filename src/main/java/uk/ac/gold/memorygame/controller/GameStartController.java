@@ -20,22 +20,10 @@ public class GameStartController {
         createView();
     }
 
-    /*
-     * -----------------------------
-     * Access
-     * -----------------------------
-     */
-
     public Parent getView() {
         LOGGER.debug("Getting start screen view");
         return gameStartView.getRoot();
     }
-
-    /*
-     * -----------------------------
-     * Initialise view
-     * -----------------------------
-     */
 
     private void createView() {
         gameStartView = new GameStartView();
@@ -44,11 +32,11 @@ public class GameStartController {
 
     private void setStartButtonHandler() {
         LOGGER.debug("Passing start button handler to start screen view");
-        gameStartView.setStartClickHandler(_ -> onStartButtonClick());
+        gameStartView.setStartClickHandler(event -> onStartButtonClick());
     }
 
     private void onStartButtonClick() {
         LOGGER.debug("Start button click");
-        app.showGameScreen();
+        app.showGameScreen(gameStartView.getSelectedDifficulty());
     }
 }
