@@ -45,7 +45,7 @@ public class GameOverController {
 
     private void onRestartButtonClick() {
         LOGGER.debug("Restart button click");
-        app.showGameScreen(Difficulty.EASY);
+        app.showGameScreen(Difficulty.MEDIUM);
     }
 
     private void onQuitButtonClick() {

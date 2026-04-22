@@ -47,7 +47,7 @@ public class GameStartView {
 
     public Difficulty getSelectedDifficulty() {
     return difficultyChoice.getValue();
-    }   
+    }
 
     public void setStartClickHandler(EventHandler<ActionEvent> handler) {
         LOGGER.debug("Setting start click handler");

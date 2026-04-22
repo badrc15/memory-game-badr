@@ -1,6 +1,7 @@
 package uk.ac.gold.memorygame;
 
 import java.util.List;
+import java.util.Random;
 import java.util.prefs.Preferences;
 
 import org.apache.logging.log4j.LogManager;
@@ -65,13 +66,30 @@ public class MemoryGameApp extends Application {
         primaryStage.setScene(new Scene(controller.getView(), 640, 480));
     }
 
+    private CardDeck<String> createRandomDeck() {
+    List<CardDeck<String>> decks = List.of(
+            new TextCardDeck(
+                    "Animals",
+                    List.of("bat", "bug", "cat", "cow", "dog", "pig", "fox", "owl")
+            ),
+            new TextCardDeck(
+                    "Numbers",
+                    List.of("1", "2", "3", "4", "5", "6", "7", "8")
+            ),
+            new TextCardDeck(
+                    "Emoji",
+                    List.of("😀", "🐶", "🍎", "🚗", "⚽", "🎵", "🌟", "🔥")
+            )
+    );
+
+    Random random = new Random();
+    return decks.get(random.nextInt(decks.size()));
+}
+
     public void showGameScreen(Difficulty difficulty) {
         LOGGER.debug("Creating game screen");
 
-        CardDeck<String> cardDeck = new TextCardDeck(
-            "Animals",
-            List.of("bat", "bug", "cat", "cow", "dog", "pig", "fox", "owl"));
-
+        CardDeck<String> cardDeck = createRandomDeck();
         int numberOfPairs = difficulty.getPairs();
 
         GamePlayController controller = new GamePlayController(this, cardDeck, numberOfPairs);
