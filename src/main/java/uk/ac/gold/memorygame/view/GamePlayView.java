@@ -35,7 +35,7 @@ public class GamePlayView {
     // Timer to handle UI update of mismatched cards.
     private PauseTransition mismatchPause = new PauseTransition(Duration.seconds(2));;
 
-    public GamePlayView(GameModel model, CardDeck cardDeck) {
+    public GamePlayView(GameModel model, CardDeck<?> cardDeck) {
         this.model = model;
 
         root = new VBox();

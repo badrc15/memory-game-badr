@@ -23,7 +23,7 @@ public class GamePlayController implements GameModelObserver {
     private final GameModel gameModel;
     private GamePlayView gamePlayView;
 
-    public GamePlayController(MemoryGameApp app, CardDeck cardSet, int numberOfPairs) {
+    public GamePlayController(MemoryGameApp app, CardDeck<String> cardSet, int numberOfPairs) {
         this.app = app;
         this.gameModel = createGameModel(numberOfPairs);
 
@@ -71,7 +71,7 @@ public class GamePlayController implements GameModelObserver {
     }
 
     //  Create the gameplay view
-    private void createView(CardDeck cardSet) {
+    private void createView(CardDeck<?> cardSet) {
         LOGGER.debug("Creating game play view");
         gamePlayView = new GamePlayView(gameModel, cardSet);
     }

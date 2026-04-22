@@ -11,6 +11,7 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 import uk.ac.gold.memorygame.config.CardDeck;
 import uk.ac.gold.memorygame.config.TextCardDeck;
+import uk.ac.gold.memorygame.controller.GameOverController;
 import uk.ac.gold.memorygame.controller.GamePlayController;
 import uk.ac.gold.memorygame.controller.GameStartController;
 
@@ -66,7 +67,7 @@ public class MemoryGameApp extends Application {
     public void showGameScreen() {
         LOGGER.debug("Creating game screen");
 
-        CardDeck cardDeck = new TextCardDeck(
+        CardDeck<String> cardDeck = new TextCardDeck(
             "Animals",
             List.of("bat", "bug", "cat", "cow", "dog", "pig"));
 
@@ -76,10 +77,12 @@ public class MemoryGameApp extends Application {
         primaryStage.setScene(new Scene(controller.getView(), 640, 480));
     }
 
-    public void showGameOverScreen(int finalScore) {
-    LOGGER.info("Game over");
-    LOGGER.info("Final score: {}", finalScore);
-}
+    public void showGameOverScreen(int score) {
+        LOGGER.debug("Creating game over screen");
+
+        GameOverController controller = new GameOverController(this, score);
+        primaryStage.setScene(new Scene(controller.getView(), 640, 480));
+    }
 
     public Preferences getPrefs() {
         return prefs;

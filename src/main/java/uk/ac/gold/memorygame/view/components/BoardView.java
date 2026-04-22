@@ -31,7 +31,7 @@ public class BoardView {
         return cardViewButtons.get(card);
     }
 
-    public void buildCards(List<Card> cards, CardDeck cardDeck) {
+    public void buildCards(List<Card> cards, CardDeck<?> cardDeck) {
         LOGGER.debug("Building card buttons");
 
         int numberOfCards = cards.size();
@@ -57,9 +57,7 @@ public class BoardView {
             // Get the Card model instance.
             Card cardModel = cards.get(i);
 
-            CardButton cardButton = new TextCardButton(
-                    cardModel,
-                    cardDeck.get(cardModel.getPairId()));
+            CardButton cardButton = CardButtonFactory.create(cardDeck, cardModel);
             cardViewButtons.put(cardModel, cardButton);
 
             int col = i % ncols;
