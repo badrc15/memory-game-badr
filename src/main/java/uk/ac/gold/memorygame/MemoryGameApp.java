@@ -42,6 +42,8 @@ public class MemoryGameApp extends Application {
     private static final Logger LOGGER = LogManager.getLogger();
 
     private Stage primaryStage;
+    private Difficulty currentDifficulty;
+    private CardDeck<String> currentDeck;
 
     // Application/user-related state: single instance that persists for the
     // lifetime of the application. Could also be saved and reloaded at
@@ -89,11 +91,32 @@ public class MemoryGameApp extends Application {
     public void showGameScreen(Difficulty difficulty) {
         LOGGER.debug("Creating game screen");
 
-        CardDeck<String> cardDeck = createRandomDeck();
-        int numberOfPairs = difficulty.getPairs();
+        currentDifficulty = difficulty;
+        currentDeck = createRandomDeck();
 
-        GamePlayController controller = new GamePlayController(this, cardDeck, numberOfPairs);
+        GamePlayController controller = new GamePlayController(this, currentDeck, difficulty);
         primaryStage.setScene(new Scene(controller.getView(), 640, 480));
+    }
+
+    public void showGameScreen(Difficulty difficulty, CardDeck<String> deck) {
+    LOGGER.debug("Creating game screen from saved settings");
+
+    currentDifficulty = difficulty;
+    currentDeck = deck;
+
+    GamePlayController controller = new GamePlayController(this, currentDeck, currentDifficulty);
+    primaryStage.setScene(new Scene(controller.getView(), 640, 480));
+    }
+
+    public void restartCurrentGame() {
+    LOGGER.debug("Restarting current game");
+
+    if (currentDifficulty == null || currentDeck == null) {
+        showStartScreen();
+        return;
+    }
+
+    showGameScreen(currentDifficulty, currentDeck);
     }
 
     public void showGameOverScreen(int score) {

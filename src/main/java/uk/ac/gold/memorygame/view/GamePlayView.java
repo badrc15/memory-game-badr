@@ -9,6 +9,7 @@ import org.apache.logging.log4j.Logger;
 import javafx.animation.Animation;
 import javafx.animation.PauseTransition;
 import javafx.scene.Parent;
+import javafx.scene.control.Label;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
 import javafx.util.Duration;
@@ -31,6 +32,7 @@ public class GamePlayView {
     // GameView UI components.
     private final BoardView boardView;
     private final ScoreView scoreView;
+    private final Label timerLabel;
 
     // Timer to handle UI update of mismatched cards.
     private PauseTransition mismatchPause = new PauseTransition(Duration.seconds(2));;
@@ -52,6 +54,8 @@ public class GamePlayView {
         VBox.setVgrow(boardView.getRoot(), Priority.ALWAYS);
 
         root.getChildren().add(scoreView);
+        timerLabel = new Label("Time left: 45");
+        root.getChildren().add(timerLabel);
         root.getChildren().add(boardView.getRoot());
     }
 
@@ -66,7 +70,7 @@ public class GamePlayView {
 
     public void hideCardsDelayed(Runnable hideAction) {
         LOGGER.debug("Start mismatch pause transition");
-        mismatchPause.setOnFinished(_ -> hideAction.run());
+        mismatchPause.setOnFinished(event -> hideAction.run());
         mismatchPause.playFromStart();
     }
 
@@ -97,6 +101,10 @@ public class GamePlayView {
     public void matchCard(Card card) {
         LOGGER.debug("Update matching cards");
         boardView.getCardButton(card).match();
+    }
+
+    public void setTimerText(String text) {
+    timerLabel.setText(text);
     }
 
     public void update() {
