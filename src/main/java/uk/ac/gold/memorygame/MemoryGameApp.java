@@ -16,6 +16,7 @@ import uk.ac.gold.memorygame.config.TextCardDeck;
 import uk.ac.gold.memorygame.controller.GameOverController;
 import uk.ac.gold.memorygame.controller.GamePlayController;
 import uk.ac.gold.memorygame.controller.GameStartController;
+import uk.ac.gold.memorygame.controller.TicTacToeController;
 
 /**
  * JavaFX App: MemoryGame
@@ -86,7 +87,14 @@ public class MemoryGameApp extends Application {
 
     Random random = new Random();
     return decks.get(random.nextInt(decks.size()));
-}
+    }
+
+    public void showTicTacToeScreen() {
+        LOGGER.debug("Creating Tic Tac Toe screen");
+
+        TicTacToeController controller = new TicTacToeController(this);
+        primaryStage.setScene(new Scene(controller.getView(), 640, 480));
+    }
 
     public void showGameScreen(Difficulty difficulty) {
         LOGGER.debug("Creating game screen");

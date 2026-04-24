@@ -11,7 +11,7 @@ import javafx.scene.text.Text;
 public class GameOverView {
 
     private final VBox root;
-    private final Button quitButton;
+    private final Button mainMenuButton;
     private final Button restartButton;
     private final Text titleText;
     private final Text finalScore;
@@ -31,10 +31,10 @@ public class GameOverView {
         restartButton = new Button("Restart");
         restartButton.setStyle("-fx-font-size: 14px; -fx-padding: 8 20 8 20;");
 
-        quitButton = new Button("Quit");
-        quitButton.setStyle("-fx-font-size: 14px; -fx-padding: 8 20 8 20;");
+        mainMenuButton = new Button("Main Menu");
+        mainMenuButton.setStyle("-fx-font-size: 14px; -fx-padding: 8 20 8 20;");
 
-        root.getChildren().addAll(titleText, finalScore, restartButton, quitButton);
+        root.getChildren().addAll(titleText, finalScore, restartButton, mainMenuButton);
     }
 
     public Parent getRoot() {
@@ -45,7 +45,7 @@ public class GameOverView {
         restartButton.setOnAction(handler);
     }
 
-    public void setQuitClickHandler(EventHandler<ActionEvent> handler) {
-        quitButton.setOnAction(handler);
+    public void setMainMenuClickHandler(EventHandler<ActionEvent> handler) {
+        mainMenuButton.setOnAction(handler);
     }
 }

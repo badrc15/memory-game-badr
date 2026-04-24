@@ -28,6 +28,7 @@ public class GameStartController {
     private void createView() {
         gameStartView = new GameStartView();
         setStartButtonHandler();
+        setTicTacToeButtonHandler();
     }
 
     private void setStartButtonHandler() {
@@ -39,4 +40,8 @@ public class GameStartController {
         LOGGER.debug("Start button click");
         app.showGameScreen(gameStartView.getSelectedDifficulty());
     }
+
+    private void setTicTacToeButtonHandler() {
+    gameStartView.setTicTacToeClickHandler(event -> app.showTicTacToeScreen());
+}
 }

@@ -38,6 +38,7 @@ public class GamePlayController implements GameModelObserver {
 
         createView(cardSet);
         setCardsClickHandler();
+        setMenuButtonHandler();
 
         // Ensure score and other UI are shown correctly when the screen opens.
         gamePlayView.update();
@@ -88,6 +89,21 @@ public class GamePlayController implements GameModelObserver {
     private void setCardsClickHandler() {
         LOGGER.debug("Passing card click handler to game play view");
         gamePlayView.setCardClickHandler(this::onCardClick);
+    }
+    
+    private void setMenuButtonHandler() {
+    gamePlayView.setMenuClickHandler(event -> onMenuButtonClick());
+}
+
+private void onMenuButtonClick() {
+    if (timer != null) {
+        timer.stop();
+    }
+
+    gamePlayView.cancelMismatchedPause();
+    gameModel.removeObserver(this);
+
+    app.showStartScreen();
     }
 
     // Handle a card click from the user by passing the selected card into the model.
