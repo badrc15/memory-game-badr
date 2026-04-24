@@ -21,24 +21,41 @@ public class GameStartView {
     private final VBox root;
 
     private final Button startButton;
+    private final Label titleLabel;
+    private final Label subtitleLabel;
 
     private final ChoiceBox<Difficulty> difficultyChoice;
     private final Label difficultyLabel;
 
     public GameStartView() {
         root = new VBox();
-        root.setSpacing(10);
+        root.setSpacing(14);
         root.setAlignment(Pos.CENTER);
+        root.setStyle("-fx-padding: 30; -fx-background-color: #f4f4f4;");
 
-        startButton = new Button("Start Game");
+        titleLabel = new Label("Memory Game");
+        titleLabel.setStyle("-fx-font-size: 32px; -fx-font-weight: bold;");
+
+        subtitleLabel = new Label("Match all cards before time runs out!");
+        subtitleLabel.setStyle("-fx-font-size: 15px;");
+
+        difficultyLabel = new Label("Select difficulty:");
+        difficultyLabel.setStyle("-fx-font-size: 14px; -fx-font-weight: bold;");
 
         difficultyChoice = new ChoiceBox<>();
         difficultyChoice.getItems().addAll(Difficulty.values());
         difficultyChoice.setValue(Difficulty.MEDIUM);
 
-        difficultyLabel = new Label("Select Difficulty:");
+        startButton = new Button("Start Game");
+        startButton.setStyle("-fx-font-size: 14px; -fx-padding: 8 20 8 20;");
 
-        root.getChildren().addAll(difficultyLabel, difficultyChoice, startButton);
+        root.getChildren().addAll(
+                titleLabel,
+                subtitleLabel,
+                difficultyLabel,
+                difficultyChoice,
+                startButton
+        );
     }
 
     public Parent getRoot() {
@@ -46,7 +63,7 @@ public class GameStartView {
     }
 
     public Difficulty getSelectedDifficulty() {
-    return difficultyChoice.getValue();
+        return difficultyChoice.getValue();
     }
 
     public void setStartClickHandler(EventHandler<ActionEvent> handler) {

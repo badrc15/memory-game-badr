@@ -41,7 +41,8 @@ public class GamePlayView {
         this.model = model;
 
         root = new VBox();
-        root.setSpacing(10);
+        root.setSpacing(12);
+        root.setStyle("-fx-padding: 20; -fx-background-color: #f4f4f4;");
 
         scoreView = new ScoreView();
         boardView = new BoardView();
@@ -53,10 +54,10 @@ public class GamePlayView {
         // Allow board to fill all vertical space.
         VBox.setVgrow(boardView.getRoot(), Priority.ALWAYS);
 
-        root.getChildren().add(scoreView);
         timerLabel = new Label("Time left: 45");
-        root.getChildren().add(timerLabel);
-        root.getChildren().add(boardView.getRoot());
+        timerLabel.setStyle("-fx-font-size: 18px; -fx-font-weight: bold;");
+
+        root.getChildren().addAll(scoreView, timerLabel, boardView.getRoot());
     }
 
     public Parent getRoot() {
@@ -104,7 +105,7 @@ public class GamePlayView {
     }
 
     public void setTimerText(String text) {
-    timerLabel.setText(text);
+        timerLabel.setText(text);
     }
 
     public void update() {

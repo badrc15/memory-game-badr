@@ -42,6 +42,8 @@ public abstract class CardButton extends Button {
     }
 
     public void match() {
+        setStyle("-fx-background-color: #8fd694; -fx-border-color: #3c8c40; -fx-font-weight: bold;");
+        setDisable(true);
         LOGGER.debug("Matched {}", cardModel);
     }
 
