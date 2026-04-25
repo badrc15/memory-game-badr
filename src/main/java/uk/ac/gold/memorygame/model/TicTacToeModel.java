@@ -1,18 +1,29 @@
 package uk.ac.gold.memorygame.model;
 
+import java.util.LinkedList;
+import java.util.Queue;
+
 public class TicTacToeModel {
 
     private final String[][] board;
     private String currentPlayer;
     private String winner;
     private boolean gameOver;
+    private final Queue<int[]> xMoves;
+    private final Queue<int[]> oMoves;
 
     public TicTacToeModel() {
+        xMoves = new LinkedList<>();
+        oMoves = new LinkedList<>();
+
         board = new String[3][3];
         reset();
     }
 
     public void reset() {
+        xMoves.clear();
+        oMoves.clear();
+
         for (int row = 0; row < 3; row++) {
             for (int col = 0; col < 3; col++) {
                 board[row][col] = "";
@@ -30,6 +41,13 @@ public class TicTacToeModel {
         }
 
         board[row][col] = currentPlayer;
+        Queue<int[]> moves = currentPlayer.equals("X") ? xMoves : oMoves;
+        moves.add(new int[] { row, col });
+
+        if (moves.size() > 3) {
+            int[] oldestMove = moves.remove();
+            board[oldestMove[0]][oldestMove[1]] = "";
+        }
         checkGameState();
 
         if (!gameOver) {
@@ -37,6 +55,16 @@ public class TicTacToeModel {
         }
 
         return true;
+    }
+
+    public int[] getOldestMoveForCurrentPlayer() {
+        Queue<int[]> moves = currentPlayer.equals("X") ? xMoves : oMoves;
+
+        if (moves.size() < 3) {
+            return null;
+        }
+
+        return moves.peek();
     }
 
     public String getCell(int row, int col) {

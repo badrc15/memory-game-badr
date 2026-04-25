@@ -69,6 +69,14 @@ public class TicTacToeController {
             }
         }
 
+        if (!model.isGameOver()) {
+            int[] vanishingMove = model.getOldestMoveForCurrentPlayer();
+
+            if (vanishingMove != null) {
+                view.markVanishingCell(vanishingMove[0], vanishingMove[1]);
+            }
+        }
+
         if (model.isGameOver()) {
             if (model.getWinner().equals("Draw")) {
                 view.setStatusText("Draw!");

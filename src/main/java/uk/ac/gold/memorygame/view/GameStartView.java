@@ -51,7 +51,7 @@ public class GameStartView {
         startButton = new Button("Play Memory Game");
         startButton.setStyle("-fx-font-size: 14px; -fx-padding: 8 20 8 20;");
 
-        ticTacToeButton = new Button("Play Noughts and Crosses");
+        ticTacToeButton = new Button("Play Vanishing Tic Tac Toe");
         ticTacToeButton.setStyle("-fx-font-size: 14px; -fx-padding: 8 20 8 20;");
 
         HBox gameChoiceBox = new HBox();
@@ -82,10 +82,10 @@ public class GameStartView {
         ticTacToePanel.setAlignment(Pos.CENTER);
         ticTacToePanel.setStyle("-fx-padding: 25; -fx-background-color: white; -fx-border-color: #cccccc; -fx-border-radius: 10; -fx-background-radius: 10;");
 
-        Label ticTacToeTitle = new Label("Noughts and Crosses");
+        Label ticTacToeTitle = new Label("Vanishing Tic Tac Toe");
         ticTacToeTitle.setStyle("-fx-font-size: 22px; -fx-font-weight: bold;");
 
-        Label ticTacToeDescription = new Label("Take turns placing Xs and Os. First to three wins.");
+        Label ticTacToeDescription = new Label("Take turns placing Xs and Os. First to three wins. Your oldest move will vanish when you place a fourth!");
         ticTacToeDescription.setWrapText(true);
 
         ticTacToePanel.getChildren().addAll(
@@ -101,6 +101,23 @@ public class GameStartView {
                 subtitleLabel,
                 gameChoiceBox
         );
+
+        memoryPanel.setPrefWidth(260);
+        memoryPanel.setMinWidth(260);
+        memoryPanel.setMaxWidth(260);
+
+        ticTacToePanel.setPrefWidth(260);
+        ticTacToePanel.setMinWidth(260);
+        ticTacToePanel.setMaxWidth(260);
+
+        memoryDescription.setWrapText(true);
+        memoryDescription.setMaxWidth(220);
+
+        ticTacToeDescription.setWrapText(true);
+        ticTacToeDescription.setMaxWidth(220);
+
+        ticTacToeTitle.setWrapText(true);
+        ticTacToeTitle.setMaxWidth(280);
         }
 
     public Parent getRoot() {

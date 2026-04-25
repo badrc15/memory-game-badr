@@ -25,7 +25,7 @@ public class TicTacToeView {
         root.setAlignment(Pos.CENTER);
         root.setStyle("-fx-padding: 30; -fx-background-color: #f4f4f4;");
 
-        titleLabel = new Label("Noughts and Crosses");
+        titleLabel = new Label("Vanishing Tic Tac Toe");
         titleLabel.setStyle("-fx-font-size: 28px; -fx-font-weight: bold;");
 
         statusLabel = new Label("Current player: X");
@@ -93,5 +93,15 @@ public class TicTacToeView {
 
     public void resetCellStyle(int row, int col) {
         buttons[row][col].setStyle("-fx-font-size: 28px; -fx-font-weight: bold;");
+    }
+
+    public void markVanishingCell(int row, int col) {
+    buttons[row][col].setStyle(
+            "-fx-font-size: 28px; " +
+            "-fx-font-weight: bold; " +
+            "-fx-background-color: #ffd966; " +
+            "-fx-border-color: #cc9900; " +
+            "-fx-border-width: 3;"
+    );
     }
 }
